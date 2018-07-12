@@ -7,37 +7,47 @@ import CharComponent from './CharComponent/CharComponent';
 
 class App extends Component {
   
-  text_length = (event) => {
-  const text_data = event.target.value
-  this.setState(
-    {
-    len:text_data.length
-    }, 
-  )
+  textLengthHandler = (event) => {
+    this.setState({
+     input_text : event.target.value
+    }
+    )
   }
-  state = {
-    len: "",
-    chars_compenents:[
 
-    ]
+  state = {
+    input_text: ""
+  }
+
+  delete_component = (index) => {
+    const arr2 = (this.state.input_text).split("")
+    arr2.splice(index,1)
+    const new_text = arr2.join("")
+    this.setState({input_text:new_text})
+
   }
 
   render() {
+    let char_component = null 
+    const arr = this.state.input_text.split("")
+    console.log(arr)
+    char_component = (
+      <div>{
+        arr.map ( (x,index) => {
+
+          return <Char_component ch = {x}  click={this.delete_component.bind(index)} />
+        })
     
-     let chars = null
-     const arr = this.text_data.split("")
-     arr.map(x => {
-      this.setState.chars_compenents[{ch: {x}}]
-     })
-     console.log("----------->"+this.setState.chars_compenents)
-    
+    }</div>
+      
+    )
     return (
       <div className="App">
         <h3>List and Components </h3>
-        <input type="text" onChange={this.text_length}/>
-        <p>{this.state.len}</p>
-        <Validation_component len={this.state.len}/>
-        <Char_component  />
+        <input type="text" onChange={this.textLengthHandler}/>
+        <p>{this.state.input_text.length}</p>
+        <Validation_component len={this.state.input_text.length}/>
+            
+        {char_component}
       </div>
     );
   }

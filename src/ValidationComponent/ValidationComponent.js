@@ -8,7 +8,6 @@ const ValidationComponent = (props) => {
         status = "Text Too Long"
     else
         status = "Correct Text"
-    console.log(typeof props.len)
     return(
     <p>{status}</p>
     );
