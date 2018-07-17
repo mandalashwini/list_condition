@@ -23,6 +23,7 @@ class App extends Component {
     arr2.splice(index,1)
     const new_text = arr2.join("")
     this.setState({input_text:new_text})
+    console.log("new_text:---"+new_text)
 
   }
 
@@ -40,10 +41,11 @@ class App extends Component {
     }</div>
       
     )
+    
     return (
       <div className="App">
-        <h3>List and Components </h3>
-        <input type="text" onChange={this.textLengthHandler}/>
+        <h3 >List and Components </h3>
+        <input type="text" onChange={this.textLengthHandler} value={this.state.input_text}/>
         <p>{this.state.input_text.length}</p>
         <Validation_component len={this.state.input_text.length}/>
             
